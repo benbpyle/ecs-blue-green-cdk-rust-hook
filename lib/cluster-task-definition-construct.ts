@@ -49,7 +49,7 @@ export class ClusterTaskDefinitionConstruct extends Construct {
 
         this._taskDefinition.addToExecutionRolePolicy(executionPolicy);
 
-        const repository = Repository.fromRepositoryArn(scope, 'EcrRepository', '<repos-id>');
+        const repository = Repository.fromRepositoryArn(scope, 'EcrRepository', 'arn:aws:ecr:<region>:<account>:repository/ecs-blue-green');
         const container = this._taskDefinition.addContainer("rust-api", {
             // Use an image from Amazon ECR
             image: ContainerImage.fromEcrRepository(repository, 'print-green'),

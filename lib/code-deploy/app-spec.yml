@@ -1,0 +1,15 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:<region>:<account>:task-definition/rust-blue-green:9"
+        LoadBalancerInfo:
+          ContainerName: "rust-api"
+          ContainerPort: 3000
+Hooks:
+  #   - BeforeInstall: "LambdaFunctionToValidateBeforeInstall"
+  #   - AfterInstall: "LambdaFunctionToValidateAfterInstall"
+  #   - AfterAllowTestTraffic: "LambdaFunctionToValidateAfterTestTrafficStarts"
+  - BeforeAllowTraffic: "arn:aws:lambda:<region>:<account>:function:EcsDeploymentStack-InstallTestFunction55902174-yzGCQXvLAhXM"
+#   - AfterAllowTraffic: "LambdaFunctionToValidateAfterAllowingProductionTraffic"
