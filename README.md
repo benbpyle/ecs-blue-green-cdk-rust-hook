@@ -1,14 +1,38 @@
-# Welcome to your CDK TypeScript project
+# Blue/Green Deployment on ECS with CDK
 
-This is a blank project for CDK development with TypeScript.
+### Purpose 
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The goal of this repository is to demonstrate how to setup blue/green deployments with CDK and ECS
 
-## Useful commands
+### Background
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+Setting up blue/green or canary deployments with ECS can be straightforward when using some common
+AWS services and the CDK.  This repository has the following resources:
+
+- API Gateway
+- Application Load Balancer
+- VPC PrivateLink
+- VPC with Public/Private/Isolated Subnets
+- Blue/Green target groups with test listeners
+- ECS Cluster with one Service and Task
+- CodeDeploy Deployment Application to handle the deployment
+
+![Architecture](./Blue_Green_CDK.jpg)
+
+### Deploy
+
+In order to deploy you'll need:
+
+- Rust
+- TypeScript
+- CDK
+- An AWS Account
+
+
+```bash
+# deploy
+cdk deploy
+# destroy
+cdk destroy
+```
+
